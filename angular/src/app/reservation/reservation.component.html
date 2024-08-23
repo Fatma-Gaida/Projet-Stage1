@@ -1,0 +1,209 @@
+<!-- Modal pour choisir la date et l'heure -->
+<div class="modal fade show" id="reservationDateModal" tabindex="-1" aria-labelledby="reservationDateModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="reservationDateModalLabel">Select the Date and the hours of your reservation</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="mb-3">
+            <label for="reservationDate" class="form-label">Date</label>
+            <input type="date" class="form-control" id="reservationDate" [(ngModel)]="reservationDate" name="reservationDate">
+          </div>
+          <div class="mb-3">
+            <label for="departureHour" class="form-label">Departure Hour</label>
+            <input type="time" class="form-control" id="departureHour" [(ngModel)]="departureHour" name="departureHour">
+          </div>
+          <div class="mb-3">
+            <label for="returnHour" class="form-label">Return Heure</label>
+            <input type="time" class="form-control" id="returnHour" [(ngModel)]="returnHour" name="returnHour">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+      
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="handleNext()">Suivant</button>
+      </div>
+    </div>
+  </div>
+</div>
+ 
+       <div class="container-fluid py-4">
+          <form>
+            <div class="row d-flex align-items-center" >
+                <div class="col justify-content-center">
+                  <div class="card mb-3 ">
+                    <div class="card-body px-0 pt-0 pb-2">
+                      <div class="row justify-content-center  mt-3" style="margin-left: 5%;margin-right: 5%;" >
+                        
+                        <div class="col-md justify-content-center">
+                          <div class="form-group">
+                            <label for="category" class="form-control-label">Category</label>
+                            <input id="category" class="form-control" type="text" value="">
+                          </div>
+                        </div>
+                        <div class="col-md">
+                          <div class="form-group">
+                            <label for="subcategory" class="form-control-label">Subcategory</label>
+                            <input id="subcategory" class="form-control" type="text" value="">
+                          </div>
+                        </div>
+                        <div class="col-md">
+                          <div class="form-group">
+                            <label for="name" class="form-control-label">Name</label>
+                            <input id="name" class="form-control" type="text" value="">
+                          </div>
+                        </div>
+                        <div class="col-md">
+                          <button type="submit" class="btn btn-primary w-100" style="margin-top: 29px;"><i class="fa-solid fa-magnifying-glass"></i>   Search</button>
+                        </div>
+                      
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+       <div class="row">
+         <div class="col-12">
+           <div class="card mb-4">
+             <div class="card-header pb-0">
+               <h6>Select the Resources that you want to reserve</h6>
+             </div>
+             <div class="card-body px-0 pt-0 pb-2">
+               <div class="table-responsive p-0">
+                <table class="table align-items-center mb-0">
+                  <thead>
+                    <tr>
+                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Name</th>
+                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Category</th>
+                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Subcategory</th>
+                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">State</th>
+                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Maintenance Status</th>
+                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action</th>
+                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Check Details</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr  *ngFor="let equipment of equipments">
+                      <ng-container *ngIf="equipment.statusMaintenance != 'Under maintenace'">
+                      <td class="text-center text-sm">
+                        <div class="d-flex px-2 py-1">
+                          <div class="d-flex flex-column justify-content-center">
+                            <h6 class="mb-0 text-sm">{{ equipment.name }}</h6>
+                          </div>
+                        </div>
+                      </td>
+                      <td class="text-center text-sm">
+                        <p class="text-xs font-weight-bold mb-0">{{ equipment.category }}</p>
+                      </td>
+                      <td class="text-center text-sm">
+                        <p class="text-xs font-weight-bold mb-0">{{ equipment.type }}</p>
+                      </td>
+                      <td class="align-middle text-center text-sm">
+                        <span class="badge badge-sm bg-gradient-success">{{ equipment.status }}</span>
+                      </td>
+                      <td class="align-middle text-center text-sm">
+                        <span class="badge badge-sm bg-gradient-success">{{ equipment.statusMaintenance }}</span>
+                      </td>
+                      <td class="align-middle text-center text-sm">
+                        <input type="checkbox" (change)="toggleEquipmentSelection(equipment)">
+                      </td>
+                      <td>
+                        <button type="button" class="btn btn-secondary">Details</button>
+                      </td>
+                    </ng-container>
+                    </tr>
+                    <tr *ngFor="let room of rooms">
+                      <td class="text-center text-sm">
+                        <div class="d-flex px-2 py-1">
+                          <div class="d-flex flex-column justify-content-center">
+                            <h6 class="mb-0 text-sm">{{ room.name }}</h6>
+                          </div>
+                        </div>
+                      </td>
+                      <td class="text-center text-sm">
+                        <p class="text-xs font-weight-bold mb-0">{{ room.category }}</p>
+                      </td>
+                      <td class="text-center text-sm">
+                        <p class="text-xs font-weight-bold mb-0">{{ room.type }}</p>
+                      </td>
+                      <td class="align-middle text-center text-sm">
+                        <span class="badge badge-sm bg-gradient-success">{{ room.status }}</span>
+                      </td>
+                      <td class="align-middle text-center text-sm">
+                        <span class="badge badge-sm bg-gradient-success">{{ room.statusMaintenance }}</span>
+                      </td>
+                      <td class="align-middle text-center text-sm">
+                        <input type="checkbox" (change)="toggleRoomSelection(room)">
+                      </td>
+                      <td>
+                        <button type="button" class="btn btn-secondary">Details</button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+                <div>
+                  <button type="button" class="btn btn-primary mt-3" style="margin-left: 90%;" (click)="openModal()">Reserve</button>
+                </div>
+                
+              
+                <!-- Modal -->
+                <div class="modal fade" id="reservationModal" tabindex="-2" aria-labelledby="reservationModalLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="reservationModalLabel">Selected Resources</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                        <h6>Selected Equipments:</h6>
+                        <ul>
+                          <li *ngFor="let equipment of selectedEquipments">{{ equipment.name }}</li>
+                        </ul>
+                        <h6>Selected Rooms:</h6>
+                        <ul>
+                          <li *ngFor="let room of selectedRooms">{{ room.name }} </li>
+                        </ul>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary" (click)="confirmReservation()">Confirm</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+              
+                
+               </div>
+             </div>
+           </div>
+         </div>
+       </div>
+       
+       <footer class="footer pt-3  ">
+         <div class="container-fluid">
+           <div class="row align-items-center justify-content-lg-between">
+             <div class="col-lg-6 mb-lg-0 mb-4">
+               <div class="copyright text-center text-sm text-muted text-lg-start">
+                 © <script>
+                   document.write(new Date().getFullYear())
+                 </script>
+                 2024
+                 <a href="" class="font-weight-bold" target="_blank">TechnoCode</a>
+                 all right reserved.
+               </div>
+             </div>
+             <div class="col-lg-6">
+             
+             </div>
+           </div>
+         </div>
+       </footer>
+     </div>
+   
+  
+ 

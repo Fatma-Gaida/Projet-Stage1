@@ -1,0 +1,240 @@
+
+     <div class="container-fluid py-4">
+       <div class="row">
+         <div class="col-12">
+           <div class="card mb-4">
+             <div class="card-header pb-0">
+               <h6>List of Employees</h6>
+             </div>
+             <div class="row " >
+               <!-- Button trigger modal -->
+                <div class="col-md" style="margin-left: 20%;">
+                    <button type="button" class="btn bg-gradient-success "  data-toggle="modal" data-target="#addEmployeeModal"  (click)="openModal($event, 'addEmployeeModal')"><i class="fa-solid fa-plus "></i>   Add Employee</button>
+                  </div>
+                 
+                <!-- Modal add employee -->
+                <div class="modal fade" id="addEmployeeModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                        <h5 class="modal-title" id="addEmployeeModal">Add Employee</h5>
+                        <button type="button" class="close" aria-label="Close" (click)="closeModal('addEmployeeModal' )" >
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        </div>
+                        <div class="modal-body">
+                          <form #addForm="ngForm"(ngSubmit)="onAddEmployee(addForm)">
+                            <div class="row">
+                              <div class="col">
+                                <div class="form-group">
+                                  <label for="first_name" class="col-form-label">First Name</label>
+                                  <input type="text" name="first_name" ngModel class="form-control">
+                                </div>
+                                <div class="form-group">
+                                  <label for="email" class="col-form-label">Email Address</label>
+                                  <input type="email" name="email" ngModel class="form-control">
+                                </div>
+                                <div class="form-group">
+                                  <label for="address" class="col-form-label">Address</label>
+                                  <input type="text" name="address" ngModel class="form-control">
+                                </div>
+                                <div class="form-group">
+                                  <label for="role" class="col-form-label">Job</label>
+                                  <input type="text" name="role" ngModel class="form-control">
+                                </div>
+                                <div class="form-group">
+                                  <label for="account_type" class="col-form-label">Account Type</label>
+                                  <select class="form-control" name="account_type" ngModel>
+                                    <option value="Admin">Admin</option>
+                                    <option value="Technician">Technician</option>
+                                    <option value="Employee">Employee</option>
+                                  </select>
+                                </div>
+                              </div>
+                              <div class="col">
+                                <div class="form-group">
+                                  <label for="last_name" class="col-form-label">Last Name</label>
+                                  <input type="text" name="last_name" ngModel class="form-control">
+                                </div>
+                                <div class="form-group">
+                                  <label for="phone_num" class="col-form-label">Phone Number</label>
+                                  <input type="text" name="phone_num" ngModel class="form-control">
+                                </div>
+                                <div class="form-group">
+                                  <label for="password" class="col-form-label">Password</label>
+                                  <input type="password" name="password" ngModel class="form-control">
+                                </div>
+                                <div class="form-group">
+                                  <label for="department" class="col-form-label">Department</label>
+                                  <select name="department" class="form-control" ngModel>
+                                    <option value="software">Software</option>
+                                    <option value="electric">Electric</option>
+                                    <option value="marketing">Marketing</option>
+                                  </select>
+                                </div>
+                                <div class="form-group">
+                                  <label for="status" class="col-form-label">Status</label>
+                                  <select name="status" class="form-control" ngModel>
+                                    <option value="active">Active</option>
+                                    <option value="inactive">Inactive</option>
+                                  </select>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" (click)="closeModal('addEmployeeModal')">Close</button>
+                              <button type="submit" class="btn btn-primary">Add</button>
+                            </div>
+                          </form>
+                          
+                    </div>
+                    </div>
+                    </div>
+                </div>
+                
+             <div class="col">
+                <div class="form-group">
+                  <input id="name" class="form-control" type="text" placeholder="Username..">
+                </div>
+              </div>
+              <div class="col">
+                <button type="submit" class="btn btn-primary "><i class="fa-solid fa-magnifying-glass"></i></button>
+              </div>
+            </div>
+             <div class="card-body px-0 pt-0 pb-2">
+               <div class="table-responsive p-0">
+                 <table class="table align-items-center mb-0">
+                   <thead>
+                    <tr>
+                        <th  class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Username</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">First Name</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Last Name</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Email Adress</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Phone Number</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Address</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Job</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">State</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Account Type</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Reservation</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Edit</th>
+                      </tr>
+                   </thead>
+                   <tbody>
+                    <tr *ngFor="let Employee of employees">
+                      <td  class="text-center text-sm">
+                        <h6 class="mb-0 text-sm">{{Employee.first_name}} {{Employee.last_name}}</h6>
+                      </td>
+                        <td  class="text-center text-sm">
+                          <div class="d-flex px-2 py-1">
+                            <div class="d-flex flex-column justify-content-center">
+                              <p class="text-xs font-weight-bold mb-0">{{Employee.first_name}}</p>
+                             
+                            </div>
+                          </div>
+                        </td>
+                        <td  class="text-center text-sm">
+                          <p class="text-xs font-weight-bold mb-0">{{Employee.last_name}}</p>
+                          
+                        </td>
+                        <td  class="text-center text-sm">
+                            <p class="text-xs font-weight-bold mb-0">{{Employee.email}}</p>
+                           
+                          </td>
+                          <td  class="text-center text-sm">
+                            <p class="text-xs font-weight-bold mb-0">{{Employee.phone_num}}</p>
+                           
+                          </td>
+                        <td  class="text-center text-sm">
+                         <p class="text-xs font-weight-bold mb-0">{{Employee.address}}</p>
+                        
+                       </td>
+                       <td  class="text-center text-sm">
+                        <p class="text-xs font-weight-bold mb-0">{{Employee.role}}</p>
+                        
+                      </td>
+                      
+                          <td  class="align-middle text-center text-sm">
+                            <span class="badge badge-sm bg-gradient-success">{{Employee.status}}</span>
+                          </td> 
+                        <td  class="text-center text-sm">
+                            <p class="text-xs font-weight-bold mb-0">{{Employee.account_type}}</p>
+                            
+                        </td>
+                        <td  class="text-center text-sm">
+                            <button type="button" class="btn btn-primary">
+                                <i class="fa-solid fa-circle-info"></i>
+                            </button> 
+                        </td>
+                        <td  class="text-center text-sm">
+                             <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#editEmployeeModal" (click)="openModal($event, 'editEmployeeModal')">
+                                <i class="fa-solid fa-pen-to-square"></i>
+                            </button> 
+
+                            <!-- Modal edit employee -->
+                            <div class="modal fade" id="editEmployeeModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Edit Employee</h5>
+                                    <button type="button" class="close" aria-label="Close" (click)="closeModal('editEmployeeModal')">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                    </div>
+                                    <div class="modal-body">
+                                    <form>
+                                        <div class="form-group">
+                                        <label for="recipient-name" class="col-form-label">Account Type</label>
+                                        <input type="text" class="form-control" id="recipient-name" >
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                        <label for="message-text" class="col-form-label">State</label>
+                                        <input type="text" class="form-control" >
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="message-text" class="col-form-label">Job</label>
+                                            <input type="text" class="form-control" >
+                                            </div>
+                                    </form>
+                                    </div>
+                                    <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"  (click)="closeModal('editEmployeeModal')">Close</button>
+                                    <button type="button" class="btn btn-primary">Edit</button>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                            
+                        </td>
+                    </tr>
+                   </tbody>
+                 </table>
+               </div>
+             </div>
+           </div>
+         </div>
+       </div>
+       
+       <footer class="footer pt-3  ">   
+         <div class="container-fluid">
+           <div class="row align-items-center justify-content-lg-between">
+             <div class="col-lg-6 mb-lg-0 mb-4">
+               <div class="copyright text-center text-sm text-muted text-lg-start">
+                 © <script>
+                   document.write(new Date().getFullYear())
+                 </script>
+                 2024
+                 <a href="" class="font-weight-bold" target="_blank">TechnoCode</a>
+                 all right reserved.
+               </div>
+             </div>
+             <div class="col-lg-6">
+             
+             </div>
+           </div>
+         </div>
+       </footer>
+     </div>
+ 
+ 

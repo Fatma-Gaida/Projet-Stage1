@@ -1,0 +1,173 @@
+
+<div class="container-fluid py-4">
+    <div class="row">
+      <div class="col-12">
+        <div class="card mb-4">
+          <div class="card-header pb-0">
+            <h6>Rooms Maintenance Table</h6>
+          </div>
+     
+          <div class="card-body px-0 pt-0 pb-2">
+            <div class="table-responsive p-0">
+              <table class="table align-items-center mb-0">
+                <thead>
+                 <tr>
+                     <th  class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Name</th>
+                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Location</th>
+                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Type</th>
+                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Capacity</th>
+                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Depart Date</th>
+                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Depart Hour</th>
+                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Return Hour</th>
+                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th>
+                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Maintenance Status</th>
+                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Reservation State</th>
+                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Edit Status</th>
+                     
+                   </tr>
+                </thead>
+                <tbody>
+                  <!-- Iterate over reservations -->
+                  <ng-container *ngFor="let reservation of reservations">
+                    <!-- Iterate over equipment within each reservation -->
+                    <ng-container *ngFor="let room of reservation.rooms">
+                      <tr>
+                        <td class="text-center text-sm">
+                          <h6 class="mb-0 text-sm">{{ room.name }}</h6>
+                        </td>
+                      
+                        <td class="text-center text-sm">
+                          <p class="text-xs font-weight-bold mb-0">{{ room.location }}</p>
+                        </td>
+                        <td class="text-center text-sm">
+                          <p class="text-xs font-weight-bold mb-0">{{ room.type }}</p>
+                        </td>
+                        <td class="text-center text-sm">
+                          <p class="text-xs font-weight-bold mb-0">{{room.capacity}}</p>
+                        </td>
+                        <td class="align-middle text-center text-sm">
+                          <p class="text-xs font-weight-bold mb-0">{{ reservation.reservationDate }}</p>
+                        </td>
+                        <td class="text-center text-sm">
+                          <p class="text-xs font-weight-bold mb-0">{{ reservation.departHour }}</p>
+                        </td>
+                        <td class="text-center text-sm">
+                          <p class="text-xs font-weight-bold mb-0">{{ reservation.returnHour }}</p>
+                        </td>
+                        <td class="text-center text-sm">
+                          <p class="text-xs font-weight-bold mb-0">{{room.status}}</p>
+                        </td>
+                        <td class="text-center text-sm">
+                          <p class="text-xs font-weight-bold mb-0">{{ room.statusMaintenance }}</p>
+                        </td>
+                        
+                        <td class="text-center text-sm">
+                          <p class="text-xs font-weight-bold mb-0">{{ reservation.status }}</p>
+                        </td>
+                  <!-- <td  class="text-center text-sm">
+                    <select class="form-select" name="account_type" ngModel>
+                        <option value="Admin">Operational</option>
+                        <option value="Technician">Technician</option>
+                        <option value="Employee">Employee</option>
+                      </select>
+                   
+                  </td>
+                  <td  class="text-center text-sm">
+                    <select class="form-select" name="account_type" ngModel>
+                      <option value="">{{room.statusMaintenance}}</option>
+                        <option value="">Operational/option>
+                        <option value="">Under Maintenance</option>
+                        
+                      </select>
+                   
+                  </td>
+                 <td  class="text-center text-sm">
+                    <select class="form-select" name="account_type" ngModel>
+                      <option value="">on Hold</option>
+                        <option value="">Reserved</option>
+                        <option value="">cancelled</option>
+                        <option value="">on Hold</option>
+                      </select>
+                  
+                </td> -->
+                 <td  class="text-center text-sm">
+  <!-- Button trigger modal -->
+                  <button type="button" class="btn bg-gradient-success" data-toggle="modal" data-target="#editstatus" (click)="openModal($event, 'editstatus')">
+                   <i class="fa-solid fa-pen-to-square"></i>
+                    </button>
+                    <!-- Modal edit reservation -->
+                    <div class="modal fade" id="editstatus" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Edit Reservation State</h5>
+                            <button type="button" class="btn-close" aria-label="Close" (click)="closeModal('editstatus')"></button>
+                          </div>
+                          <div class="modal-body">
+                            <form>
+                              <div class="form-group">
+                                <label for="status" class="col-form-label">State</label>
+                                <select name="status" class="form-select" ngModel>
+                                  <option value="active">available</option>
+                                  <option value="inactive">not available</option>
+                                </select>
+                              </div>
+                              
+                              <div class="form-group">
+                                  <label for="status" class="col-form-label">Maintenance Status</label>
+                                  <select name="status" class="form-select" ngModel>
+                                    <option value="active">Operational</option>
+                                    <option value="inactive">under Maintenance</option>
+                                  </select>
+                                </div>
+                                <div class="form-group">
+                                  <label for="status" class="col-form-label">Reservation Status</label>
+                                  <select name="status" class="form-select" ngModel>
+                                    <option value="active">Reserved</option>
+                                    <option value="inactive">Cancelled</option>
+                                  </select>
+                                </div>
+                                
+                            </form>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" (click)="closeModal('editstatus')">Close</button>
+                            <button type="button" class="btn btn-primary">Edit</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div> 
+                    
+                 </td>
+             </tr>
+            </ng-container>
+        </ng-container>
+            </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <footer class="footer pt-3  ">   
+      <div class="container-fluid">
+        <div class="row align-items-center justify-content-lg-between">
+          <div class="col-lg-6 mb-lg-0 mb-4">
+            <div class="copyright text-center text-sm text-muted text-lg-start">
+              © <script>
+                document.write(new Date().getFullYear())
+              </script>
+              2024
+              <a href="" class="font-weight-bold" target="_blank">TechnoCode</a>
+              all right reserved.
+            </div>
+          </div>
+          <div class="col-lg-6">
+          
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+

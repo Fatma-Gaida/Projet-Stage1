@@ -1,0 +1,275 @@
+
+<div class="g-sidenav-show   bg-gray-100">
+   <div class="min-height-300 bg-primary position-absolute w-100"></div>
+   <aside class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4" id="sidenav-main">
+    <div class="sidenav-header">
+      <span class="ms-1 font-weight-bold text-center"></span>
+    </div>
+    <hr class="horizontal dark mt-0">
+    <div class="collapse navbar-collapse w-auto" id="sidenav-collapse-main">
+      <ul class="navbar-nav">
+        <div *ngIf="isAdmin">
+        <li class="nav-item" [class.active]="activeTab === 'Upcoming reservations'" (click)="setActiveTab('Upcoming Reservations')">
+          <a class="nav-link" [routerLink]="['/upcoming_Reservation_Equipment']">
+            <div class="text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="fa-solid fa-calendar-days"></i>
+            </div>
+            <span class="nav-link-text ms-1">Upcoming Reservations</span>
+          </a>
+        </li>
+        <li class="nav-item" >
+          <a class="nav-link">
+            <div class="text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="fa-solid fa-calendar-days"></i>
+            </div>
+            <span class="nav-link-text ms-1">Ressources</span>
+          </a>
+          <ul class="navbar-nav" style="margin-left: 10%;">
+            <li class="nav-item" [class.active]="activeTab === 'Equipments'" (click)="setActiveTab('Equipments')">
+              <a class="nav-link" [routerLink]="['/ressources']">
+                <div class="text-center me-2 d-flex align-items-center justify-content-center">
+                  <!-- Icône pour Equipment (facultatif) -->
+                </div>
+                <span class="nav-link-text ms-1">Equipment</span>
+              </a>
+            </li>
+            <li class="nav-item" [class.active]="activeTab === 'Rooms'" (click)="setActiveTab('Rooms')">
+              <a class="nav-link" [routerLink]="['/rooms']">
+                <div class="text-center me-2 d-flex align-items-center justify-content-center ">
+                  <!-- Icône pour Rooms (facultatif) -->
+                </div>
+                <span class="nav-link-text ms-1">Rooms</span>
+              </a>
+            </li>
+          </ul>
+        </li>
+        
+        <li class="nav-item" [class.active]="activeTab === 'employees'" (click)="setActiveTab('Employees')">
+          <a class="nav-link" [routerLink]="['/employees']">
+            <div class="text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="fa-solid fa-user"></i>
+            </div>
+            <span class="nav-link-text ms-1">Employees</span>
+          </a>
+        </li>
+        <li class="nav-item" [class.active]="activeTab === 'dashboard2'" (click)="setActiveTab('Dashboard')">
+          <a class="nav-link" href="">
+            <div class="text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="fa-solid fa-chart-simple"></i>
+            </div>
+            <span class="nav-link-text ms-1">Dashboard</span>
+          </a>
+        </li>
+        <li class="nav-item" [class.active]="activeTab === 'logout'" (click)="setActiveTab('logout')">
+          <a class="nav-link" [routerLink]="['/login']">
+            <div class="text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="fa-solid fa-right-from-bracket"></i>
+            </div>
+            <span class="nav-link-text ms-1">Log out</span>
+          </a>
+        </li>
+        </div>
+        <div *ngIf="isEmployee">
+         
+        <li class="nav-item" [class.active]="activeTab === 'calendar'" (click)="setActiveTab('Calendar')">
+          <a class="nav-link" [routerLink]="['/calendar']">
+            <div class="text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="fa-solid fa-calendar-days"></i>
+            </div>
+            <span class="nav-link-text ms-1">Calendar</span>
+          </a>
+        </li>
+        <li class="nav-item" [class.active]="activeTab === 'reservation'" (click)="setActiveTab('Reservation')">
+          <a class="nav-link" [routerLink]="['/reservation']">
+            <div class="text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="fa-solid fa-bookmark"></i>
+            </div>
+            <span class="nav-link-text ms-1">Reservation</span>
+          </a>
+          
+        </li>
+        
+        <li class="nav-item" [class.active]="activeTab === 'Historic of Reservations'" (click)="setActiveTab('Historic of Reservations')">
+          <a class="nav-link" [routerLink]="['/historic']">
+            <div class="text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="fa-solid fa-clock-rotate-left"></i>
+            </div>
+            <span class="nav-link-text ms-1">Historic</span>
+          </a>
+        </li>
+      
+        <li class="nav-item" [class.active]="activeTab === 'logout'" (click)="setActiveTab('logout')">
+          <a class="nav-link" [routerLink]="['/login']">
+            <div class="text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="fa-solid fa-right-from-bracket"></i>
+            </div>
+            <span class="nav-link-text ms-1">Log out</span>
+          </a>
+        </li>
+        </div>
+        <div *ngIf="isTechnician">
+          
+          <li class="nav-item" >
+            <a class="nav-link">
+              <div class="text-center me-2 d-flex align-items-center justify-content-center">
+                <i class="fa-solid fa-wrench"></i>
+              </div>
+              <span class="nav-link-text ms-1">Maintenance Tables</span>
+            </a>
+            <ul class="navbar-nav" style="margin-left: 10%;">
+              <li class="nav-item" [class.active]="activeTab === 'Maintenance Equipments'" (click)="setActiveTab('Maintenance Equipments')">
+                <a class="nav-link" [routerLink]="['/maintenanceEq']">
+                  <div class="text-center me-2 d-flex align-items-center justify-content-center">
+                    <!-- Icône pour Equipment (facultatif) -->
+                  </div>
+                  <span class="nav-link-text ms-1">Equipment</span>
+                </a>
+              </li>
+              <li class="nav-item" [class.active]="activeTab === 'Maintenance Rooms'" (click)="setActiveTab('MaintenanceRoom')">
+                <a class="nav-link" [routerLink]="['/maintenance']">
+                  <div class="text-center me-2 d-flex align-items-center justify-content-center ">
+                    <!-- Icône pour Rooms (facultatif) -->
+                  </div>
+                  <span class="nav-link-text ms-1">Rooms</span>
+                </a>
+              </li>
+            </ul>
+          </li>
+          
+          <li class="nav-item" [class.active]="activeTab === 'logout'" (click)="setActiveTab('logout')">
+            <a class="nav-link" [routerLink]="['/login']">
+              <div class="text-center me-2 d-flex align-items-center justify-content-center">
+                <i class="fa-solid fa-right-from-bracket"></i>
+              </div>
+              <span class="nav-link-text ms-1">Log out</span>
+            </a>
+          </li>
+          </div>
+
+      </ul>
+    </div>
+  </aside>
+
+
+
+
+
+
+
+
+
+  
+
+    <!-- Navbar -->
+    <main class="main-content position-relative border-radius-lg "> 
+    <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl " id="navbarBlur" data-scroll="false">
+      <div class="container-fluid py-1 px-3">
+        <nav aria-label="breadcrumb">
+         
+          <h6 class="font-weight-bolder text-white mb-0">{{ activeTab }}</h6>
+        </nav>
+        <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
+         
+          <ul class="navbar-nav  ms-auto">
+            
+            <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
+              <a href="javascript:;" class="nav-link text-white p-0" id="iconNavbarSidenav">
+                <div class="sidenav-toggler-inner">
+                  <i class="sidenav-toggler-line bg-white"></i>
+                  <i class="sidenav-toggler-line bg-white"></i>
+                  <i class="sidenav-toggler-line bg-white"></i>
+                </div>
+              </a>
+            </li>
+           
+            <li class="nav-item dropdown pe-2 d-flex align-items-center me-2">
+              <a href="javascript:;" class="nav-link text-white font-weight-bold " id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="fa fa-bell cursor-pointer me-sm-1"></i>
+                <span class="d-sm-inline d-none">  Notifications </span>
+              </a>
+              
+              <ul class="dropdown-menu  dropdown-menu-end  px-2 py-3 me-sm-n4" aria-labelledby="dropdownMenuButton">
+                <li class="mb-2">
+                  <a class="dropdown-item border-radius-md" href="javascript:;">
+                    <div class="d-flex py-1">
+                      <div class="my-auto">
+                        <img src="../assets/img/team-2.jpg" class="avatar avatar-sm  me-3 ">
+                      </div>
+                      <div class="d-flex flex-column justify-content-center">
+                        <h6 class="text-sm font-weight-normal mb-1">
+                          <span class="font-weight-bold">New message</span> from Laur
+                        </h6>
+                        <p class="text-xs text-secondary mb-0">
+                          <i class="fa fa-clock me-1"></i>
+                          13 minutes ago
+                        </p>
+                      </div>
+                    </div>
+                  </a>
+                </li>
+                <li class="mb-2">
+                  <a class="dropdown-item border-radius-md" href="javascript:;">
+                    <div class="d-flex py-1">
+                      <div class="my-auto">
+                        <img src="../assets/img/small-logos/logo-spotify.svg" class="avatar avatar-sm bg-gradient-dark  me-3 ">
+                      </div>
+                      <div class="d-flex flex-column justify-content-center">
+                        <h6 class="text-sm font-weight-normal mb-1">
+                          <span class="font-weight-bold">New album</span> by Travis Scott
+                        </h6>
+                        <p class="text-xs text-secondary mb-0">
+                          <i class="fa fa-clock me-1"></i>
+                          1 day
+                        </p>
+                      </div>
+                    </div>
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item border-radius-md" href="javascript:;">
+                    <div class="d-flex py-1">
+                      <div class="avatar avatar-sm bg-gradient-secondary  me-3  my-auto">
+                        <svg width="12px" height="12px" viewBox="0 0 43 36" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                          <title>credit-card</title>
+                          <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                            <g transform="translate(-2169.000000, -745.000000)" fill="#FFFFFF" fill-rule="nonzero">
+                              <g transform="translate(1716.000000, 291.000000)">
+                                <g transform="translate(453.000000, 454.000000)">
+                                  <path class="color-background" d="M43,10.7482083 L43,3.58333333 C43,1.60354167 41.3964583,0 39.4166667,0 L3.58333333,0 C1.60354167,0 0,1.60354167 0,3.58333333 L0,10.7482083 L43,10.7482083 Z" opacity="0.593633743"></path>
+                                  <path class="color-background" d="M0,16.125 L0,32.25 C0,34.2297917 1.60354167,35.8333333 3.58333333,35.8333333 L39.4166667,35.8333333 C41.3964583,35.8333333 43,34.2297917 43,32.25 L43,16.125 L0,16.125 Z M19.7083333,26.875 L7.16666667,26.875 L7.16666667,23.2916667 L19.7083333,23.2916667 L19.7083333,26.875 Z M35.8333333,26.875 L28.6666667,26.875 L28.6666667,23.2916667 L35.8333333,23.2916667 L35.8333333,26.875 Z"></path>
+                                </g>
+                              </g>
+                            </g>
+                          </g>
+                        </svg>
+                      </div>
+                      <div class="d-flex flex-column justify-content-center">
+                        <h6 class="text-sm font-weight-normal mb-1">
+                          Payment successfully completed
+                        </h6>
+                        <p class="text-xs text-secondary mb-0">
+                          <i class="fa fa-clock me-1"></i>
+                          2 days
+                        </p>
+                      </div>
+                    </div>
+                  </a>
+                </li>
+                
+              </ul>
+            </li>
+            <li class="nav-item d-flex align-items-center me-2">
+              <a [routerLink]="['/profil']" (click)="setActiveTab('Profil')" class="nav-link text-white font-weight-bold ">
+                <i class="fa fa-user me-sm-1"></i>
+                <span class="d-sm-inline d-none">Profile</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <ng-content></ng-content>
+  </main>
+    <!-- End Navbar -->
+   
+  

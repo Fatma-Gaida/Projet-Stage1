@@ -1,0 +1,32 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+      <div class="card border-0 shadow rounded-3 my-5">
+        <div class="card-body p-4 p-sm-5">
+          <h2 class="text-center mb-4">Login</h2>
+          
+          <img src="kisspng-computer-icons-login-management-user-5ae155f3386149.6695613615247170432309-removebg-preview.png" class="d-block mx-auto mb-5 w-50" alt="Logo">
+        
+          <form (submit)="Login()">
+            <div class="form-floating mb-3">
+              <input type="email" class="form-control" id="floatingInput" name="email" [(ngModel)]="email" placeholder="name@example.com" required>
+              <label for="floatingInput">Email address</label>
+            </div>
+            <div class="form-floating mb-3">
+              <input type="password" class="form-control" id="floatingPassword" name="password" [(ngModel)]="password" placeholder="Password" required>
+              <label for="floatingPassword"><i class="fa-solid fa-lock"></i> Password</label>
+            </div>
+  
+            <p style="text-align: right;"><a href="#">Forget Password ?</a></p>
+            <div class="d-grid">
+              <button class="btn custom-btn btn-login text-uppercase btn btn-primary w-100" type="submit" (click)="Login()">Login</button>
+            </div>
+            <div *ngIf="errorMessage" class="alert alert-danger mt-3" role="alert">
+              {{ errorMessage }}
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
