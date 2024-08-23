@@ -1,0 +1,27 @@
+{
+    "first_name": "fatma",
+    "last_name": "gaida",
+    "email":"fatmagaida@gmail.com",
+    "password": "fatouuma",
+    "address":"kalaa kebira",
+    "phone_num": "50650177",
+    "status": "active",
+    "department":"info",
+    "account_type": "admin",
+    "role": "ingenieur"
+
+}
+{
+    "name": "Screen hp",
+    "category" : "Equipments",
+    "type" : "Computer Equipments",
+    "status" : "Enabled",
+    "status_maintenance": "operational",
+    "price ": "400",
+    "manifucturer": "hp",
+    " quantity": "2",
+     " model": "AFF245GH",
+     " description ":"screen pc"
+
+
+}
